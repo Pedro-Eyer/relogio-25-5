@@ -1,13 +1,38 @@
-# React + Vite
+# Relógio 25 + 5 - Projeto Interativo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um projeto desenvolvido para criar um relógio pomodoro funcional e estilizado que pode ser usado no navegador. A aplicação permite configurar os tempos de sessão e intervalo, iniciar, pausar, reiniciar o timer, com indicação sonora e uma interface intuitiva, responsiva para diferentes dispositivos.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas
+- React (componentes funcionais, hooks useState, useEffect e useRef)
+- HTML5 & CSS3 (flexbox para organização e estilização)
+- Manipulação de eventos de clique e áudio HTML5
+- Estilização responsiva e moderna com CSS e media queries
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# relogio-25-5
+## 🖼️ Funcionalidades
+- Tela de configuração para ajustar duração da sessão e intervalo (mínimo 1 minuto, máximo 60 minutos)
+- Timer visual que exibe o tempo restante no formato mm:ss
+- Botão para iniciar/pausar a contagem regressiva
+- Botão para reiniciar o relógio aos valores padrão
+- Botão para voltar à tela de configuração mesmo com o timer parado
+- Indicação sonora (beep) quando o tempo da sessão ou intervalo termina
+- Alternância automática entre sessão e intervalo após cada ciclo
+- Layout responsivo e estilizado para uso confortável em desktop e dispositivos móveis
+
+---
+
+## 🎨 Demonstração
+[🔗 Clique aqui para ver o projeto online](https://quote-machine-kiw3.vercel.app/)
+
+---
+
+## 🧠 Conceitos Praticados
+- Uso do React para controle de estado e efeitos colaterais
+- Gerenciamento de timers com setInterval e limpeza correta
+- Renderização condicional para alternar entre configuração e timer
+- Manipulação de elementos DOM para controle de áudio via React
+- Estilização flexível e responsiva para múltiplos tamanhos de tela
+- Princípios de usabilidade para controle intuitivo do relógio pomodoro
