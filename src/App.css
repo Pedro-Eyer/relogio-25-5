@@ -36,8 +36,9 @@ body {
 /* Controles de intervalo e sessão */
 .controls {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;  /* Para empilhar verticalmente */
   margin-bottom: 30px;
+  gap: 40px; /* Espaçamento vertical entre as seções */
 }
 
 /* Box de controle */
@@ -45,15 +46,24 @@ body {
   background-color: #282c34;
   padding: 20px;
   border-radius: 10px;
-  width: 45%;
   box-shadow: inset 0 0 8px #000000;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-/* Labels */
+/* Label dos controles */
 #break-label, #session-label {
   font-size: 1.1rem;
   margin-bottom: 10px;
   font-weight: 600;
+}
+
+/* Container flex para os botões e número ficarem alinhados na mesma linha */
+.controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 /* Botões de incremento/decremento */
@@ -62,32 +72,35 @@ button {
   border: none;
   color: #20232a;
   font-weight: 700;
-  font-size: 1.2rem; /* Aumentei a fonte */
-  padding: 10px 20px; /* Aumentei o padding para botões maiores */
+  font-size: 1.2rem;
+  padding: 10px 20px;
   border-radius: 8px;
-  margin: 0 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  min-width: 80px; /* garante um tamanho mínimo */
+  min-width: 80px;
+  margin: 0;
 }
 
 button:hover {
   background-color: #21a1f1;
 }
+
+/* Botões pequenos para + e - */
 button.small-btn {
   font-size: 1.5rem;
   padding: 5px 15px;
   min-width: 45px;
-  margin: 0 5px;
+  margin: 0;
 }
 
 /* Número do tempo */
 #break-length, #session-length {
   display: inline-block;
-  width: 40px;
+  width: 50px;
   font-size: 1.5rem;
   font-weight: 700;
   vertical-align: middle;
+  text-align: center;
 }
 
 /* Timer principal */
@@ -116,20 +129,21 @@ button.small-btn {
 }
 
 /* Botões iniciar/pausar e reset */
-#start_stop, #reset {
+#start_stop, #reset, #config, #start_config {
   background-color: #61dafb;
   border: none;
   color: #20232a;
   font-weight: 700;
   font-size: 1.1rem;
   padding: 10px 20px;
-  margin: 0 10px;
+  margin: 10px 5px 0 5px;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  min-width: 110px;
 }
 
-#start_stop:hover, #reset:hover {
+#start_stop:hover, #reset:hover, #config:hover, #start_config:hover {
   background-color: #21a1f1;
 }
 
@@ -141,16 +155,12 @@ button.small-btn {
   }
 
   .controls {
-    flex-direction: column;
-    gap: 15px;
+    gap: 20px;
   }
 
-  #break-controls, #session-controls {
-    width: 100%;
-  }
-
-  #start_stop, #reset {
+  #start_stop, #reset, #config, #start_config {
     width: 100%;
     margin: 8px 0;
+    min-width: unset;
   }
 }
