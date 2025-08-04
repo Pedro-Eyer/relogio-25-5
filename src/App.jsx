@@ -2,6 +2,19 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
+    const [breakLength, setBreakLength] = useState(5)
+    const [sessionLength, setSessionLength] = useState(25)
+    const [timeLeft, setTimeLeft] = useState(25 * 60)
+    const [isRunning, setIsRunning] = useState(false)
+    const [isSession, setIsSession] = useState(true)
+  
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60)
+      const secs = seconds % 60
+      return `${minutes < 10 ? '0' + minutes : minutes}:${secs < 10 ? '0' + secs : secs}`
+    }
+
+
   return (
     <div id="clock">
       <h1>25 + 5 Clock</h1>
