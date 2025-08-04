@@ -10,7 +10,6 @@ function App() {
   const [isConfiguring, setIsConfiguring] = useState(true)
   const intervalRef = useRef(null)
 
-  // Atualiza timeLeft quando sessionLength muda e timer não está rodando
   useEffect(() => {
     if (!isRunning && isConfiguring) {
       setTimeLeft(sessionLength * 60)
@@ -18,7 +17,6 @@ function App() {
     }
   }, [sessionLength, isRunning, isConfiguring])
 
-  // Alterna entre sessão e intervalo e toca som quando timeLeft chega a zero
   useEffect(() => {
     if (timeLeft === 0) {
       const audio = document.getElementById('beep')
@@ -34,7 +32,6 @@ function App() {
     }
   }, [timeLeft, isSession, breakLength, sessionLength])
 
-  // Limpa intervalo ao desmontar componente
   useEffect(() => {
     return () => clearInterval(intervalRef.current)
   }, [])
@@ -81,7 +78,6 @@ function App() {
     }
   }
 
-  // Controles de break, só permite mudar se não estiver rodando e na configuração
   function handleBreakIncrement() {
     if (!isRunning && isConfiguring && breakLength < 60) setBreakLength(breakLength + 1)
   }
@@ -89,7 +85,6 @@ function App() {
     if (!isRunning && isConfiguring && breakLength > 1) setBreakLength(breakLength - 1)
   }
 
-  // Controles de sessão, só permite mudar se não estiver rodando e na configuração
   function handleSessionIncrement() {
     if (!isRunning && isConfiguring && sessionLength < 60) setSessionLength(sessionLength + 1)
   }
@@ -104,48 +99,52 @@ function App() {
   }
 
   return (
-    <div id="clock">
-      <h1>25 + 5 Clock</h1>
+    <>
+      <div id="clock">
+        <h1>25 + 5 Clock</h1>
 
-      {isConfiguring ? (
-        <div className="config-screen">
-          <div id="break-controls">
-            <h2 id="break-label">Duração do Intervalo</h2>
-            <div className="controls-row">
-              <button id="break-decrement" className="small-btn" onClick={handleBreakDecrement}>-</button>
-              <span id="break-length">{breakLength}</span>
-              <button id="break-increment" className="small-btn" onClick={handleBreakIncrement}>+</button>
+        {isConfiguring ? (
+          <div className="config-screen">
+            <div id="break-controls">
+              <h2 id="break-label">Duração do Intervalo</h2>
+              <div className="controls-row">
+                <button id="break-decrement" className="small-btn" onClick={handleBreakDecrement}>-</button>
+                <span id="break-length">{breakLength}</span>
+                <button id="break-increment" className="small-btn" onClick={handleBreakIncrement}>+</button>
+              </div>
             </div>
-          </div>
 
-          <div id="session-controls">
-            <h2 id="session-label">Duração da Sessão</h2>
-            <div className="controls-row">
-              <button id="session-decrement" className="small-btn" onClick={handleSessionDecrement}>-</button>
-              <span id="session-length">{sessionLength}</span>
-              <button id="session-increment" className="small-btn" onClick={handleSessionIncrement}>+</button>
+            <div id="session-controls">
+              <h2 id="session-label">Duração da Sessão</h2>
+              <div className="controls-row">
+                <button id="session-decrement" className="small-btn" onClick={handleSessionDecrement}>-</button>
+                <span id="session-length">{sessionLength}</span>
+                <button id="session-increment" className="small-btn" onClick={handleSessionIncrement}>+</button>
+              </div>
             </div>
+
+            <button id="start_config" onClick={handleStartConfig}>Começar</button>
           </div>
+        ) : (
+          <div className="timer-screen">
+            <h2 id="timer-label">{isSession ? 'Sessão' : 'Intervalo'}</h2>
+            <h1 id="time-left">{formatTime(timeLeft)}</h1>
+            <button id="start_stop" onClick={handleStartStop}>{isRunning ? 'Pausar' : 'Iniciar'}</button>
+            <button id="reset" onClick={handleReset}>Reiniciar</button>
+            <button id="config" onClick={handleBackToConfig}>Configurar</button>
 
-          <button id="start_config" onClick={handleStartConfig}>Começar</button>
-        </div>
-      ) : (
-        <div className="timer-screen">
-          <h2 id="timer-label">{isSession ? 'Sessão' : 'Intervalo'}</h2>
-          <h1 id="time-left">{formatTime(timeLeft)}</h1>
-          <button id="start_stop" onClick={handleStartStop}>{isRunning ? 'Pausar' : 'Iniciar'}</button>
-          <button id="reset" onClick={handleReset}>Reiniciar</button>
-          <button id="config" onClick={handleBackToConfig}>Configurar</button>
+            <audio
+              id="beep"
+              src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+              type="audio/wav"
+              preload="auto"
+            ></audio>
+          </div>
+        )}
+      </div>
 
-          <audio
-            id="beep"
-            src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
-            type="audio/wav"
-            preload="auto"
-          ></audio>
-        </div>
-      )}
-    </div>
+      <footer id="footer">By Dev Eyer</footer>
+    </>
   )
 }
 
