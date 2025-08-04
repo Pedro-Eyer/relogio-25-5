@@ -1,42 +1,156 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #282c34;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container principal */
+#clock {
+  background-color: #20232a;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #61dafb;
+  padding: 30px 40px;
+  width: 350px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Título */
+#clock > h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #61dafb;
+  font-weight: 700;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Controles de intervalo e sessão */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+/* Box de controle */
+#break-controls, #session-controls {
+  background-color: #282c34;
+  padding: 20px;
+  border-radius: 10px;
+  width: 45%;
+  box-shadow: inset 0 0 8px #000000;
+}
+
+/* Labels */
+#break-label, #session-label {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Botões de incremento/decremento */
+button {
+  background-color: #61dafb;
+  border: none;
+  color: #20232a;
+  font-weight: 700;
+  font-size: 1.2rem; /* Aumentei a fonte */
+  padding: 10px 20px; /* Aumentei o padding para botões maiores */
+  border-radius: 8px;
+  margin: 0 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 80px; /* garante um tamanho mínimo */
+}
+
+button:hover {
+  background-color: #21a1f1;
+}
+button.small-btn {
+  font-size: 1.5rem;
+  padding: 5px 15px;
+  min-width: 45px;
+  margin: 0 5px;
+}
+
+/* Número do tempo */
+#break-length, #session-length {
+  display: inline-block;
+  width: 40px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+/* Timer principal */
+#timer-controls {
+  background-color: #282c34;
+  padding: 25px 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #61dafb;
+}
+
+/* Label do timer */
+#timer-label {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #61dafb;
+}
+
+/* Tempo restante */
+#time-left {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #21a1f1;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Botões iniciar/pausar e reset */
+#start_stop, #reset {
+  background-color: #61dafb;
+  border: none;
+  color: #20232a;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#start_stop:hover, #reset:hover {
+  background-color: #21a1f1;
+}
+
+/* Responsividade */
+@media (max-width: 400px) {
+  #clock {
+    width: 90vw;
+    padding: 20px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .controls {
+    flex-direction: column;
+    gap: 15px;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  #break-controls, #session-controls {
+    width: 100%;
   }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  #start_stop, #reset {
+    width: 100%;
+    margin: 8px 0;
+  }
 }
